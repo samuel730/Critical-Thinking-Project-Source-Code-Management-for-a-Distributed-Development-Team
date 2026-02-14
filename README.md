@@ -1,7 +1,133 @@
 # Critical-Thinking-Project-Source-Code-Management-for-a-Distributed-Development-Team
 
-## Author: Oluwatunmise Adesanya
+Implementing Git Workflows for a Team Project
+Overview
 
-### Overview:
+This Git workflow enables parallel feature development while ensuring high code quality and a stable main branch. It uses a Feature Branch + Pull Request (PR) + Continuous Integration (CI) approach, which is ideal for distributed teams. This workflow ensures all work is traceable, collaborative, and asynchronous, supporting efficiency across multiple locations.
 
-This document provides a complete evaluation and an implementation plan for migrating from a centralized VCS (e.g., SVN) to a distributed VCS (Git). It contains: research and recommendations (Task 1); a Git workflow guide supporting feature branching, pull requests, and integration testing (Task 2); CI/CD implementation using GitHub Actions with example workflow files (Task 3); security best practices and configuration steps (Task 4); and a real-world merge conflict resolution demonstration along with preventative measures (Task 5).
+Core Workflow Principles
+
+Each feature is developed in isolation on a dedicated branch.
+
+Code is reviewed via pull requests (PRs) before merging.
+
+Automated tests and CI checks must pass before integrating into main.
+
+The main branch is always stable and deployable.
+
+The workflow supports distributed team collaboration and traceability.
+
+Branching Strategy
+Main Branch (main)
+
+Always stable and deployable.
+
+Direct pushes are not allowed.
+
+Protected with rules:
+
+Require PR approval
+
+CI checks must pass before merge
+
+Feature Branches (feature/<feature-name>)
+
+Created from main.
+
+Used to develop new features or fixes.
+
+Naming convention example:
+
+feature/login-page
+
+feature/user-auth
+
+Hotfix Branches (hotfix/<issue-name>)
+
+For urgent production bug fixes.
+
+Created from main.
+
+Merged into main (and develop if used) after completion.
+
+Pull Request (PR) Process
+1. Create a Branch
+git checkout main
+git pull origin main
+git checkout -b feature/<your-feature-name>
+
+2. Develop Your Feature
+
+Make changes in small, focused commits.
+
+Write meaningful commit messages.
+
+git add .
+git commit -m "Add login page UI"
+
+3. Push Branch & Open PR
+git push origin feature/<your-feature-name>
+
+
+Open a PR targeting main.
+
+Provide a clear title and description.
+
+Add relevant screenshots (alt text for accessibility):
+
+alt text: login page screenshot
+
+alt text: unit test results screenshot
+
+4. Code Review
+
+Assign reviewers.
+
+Make changes as requested.
+
+5. Merge
+
+Only merge after:
+
+All CI checks pass
+
+At least one reviewer approves
+
+Use Squash and Merge or Rebase and Merge.
+
+Integration Testing with CI
+
+All PRs must pass automated testing before merging.
+
+Use CI tools like:
+
+GitHub Actions
+
+GitLab CI
+
+Jenkins
+
+Typical CI tasks:
+
+Unit tests
+
+Linting
+
+Build validation
+
+Screenshots:
+Include screenshots showing successful CI test runs and build validations.
+
+alt text: CI test passing screenshot
+
+Summary
+
+This workflow ensures:
+
+Stable main branch at all times
+
+Efficient parallel feature development
+
+High-quality code via PR reviews and CI
+
+Traceable and asynchronous collaboration for distributed teams
