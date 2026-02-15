@@ -52,6 +52,7 @@ Merged into main (and develop if used) after completion.
 
 ## Pull Request (PR) Process
 ### 1. Create a Branch
+```
 code
 
 git checkout main
@@ -59,32 +60,29 @@ git checkout main
 git pull origin main
 
 git checkout -b feature/<your-feature-name>
+```
 
 ### 2. Develop Your Feature
 
 Make changes in small, focused commits.
 
 Write meaningful commit messages.
-
+```
 code 
 
 git add.
 
 git commit -m "Add login page UI."
-
+```
 ### 3. Push Branch & Open PR
+```
 git push origin feature/<your-feature-name>
-
+```
 
 Open a PR targeting main.
 
 Provide a clear title and description.
 
-Add relevant screenshots (alt text for accessibility):
-
-alt text: login page screenshot
-
-alt text: unit test results screenshot
 
 ### 4. Code Review
 
