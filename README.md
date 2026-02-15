@@ -1,7 +1,84 @@
 # Critical-Thinking-Project-Source-Code-Management-for-a-Distributed-Development-Team
 
-## Author: Oluwatunmise Adesanya
+## Enforce Security Best Practices Projects
+As part of this learning project, I implemented several Git security best practices to ensure the integrity and protection of the codebase.
 
-### Overview:
+## Objective
+I implemented Git security best practices, including:
 
-This document provides a complete evaluation and an implementation plan for migrating from a centralized VCS (e.g., SVN) to a distributed VCS (Git). It contains: research and recommendations (Task 1); a Git workflow guide supporting feature branching, pull requests, and integration testing (Task 2); CI/CD implementation using GitHub Actions with example workflow files (Task 3); security best practices and configuration steps (Task 4); and a real-world merge conflict resolution demonstration along with preventative measures (Task 5).
+1. Setting up user access controls
+2. Managing SSH keys
+3. Enforcing branch protection rules
+4. Enabling commit signing
+5. Establishing a mechanism for change auditing
+## User Access Controls
+To manage access to my GitHub repository, I navigated to the Settings tab of my project repository. Under Collaborators and teams, I invited a dummy user as a collaborator.
+
+I assigned the read-only role by selecting Read permission when sending the invite. This ensured the collaborator could view the codebase but couldn't push or merge any changes.
+
+This exercise demonstrated how I could control who has access to my project and the level of access they are granted — an essential part of securing distributed development environments.
+
+### Outcome
+This setup ensures that only authorized users can push, merge, or delete branches, safeguarding the codebase from unauthorized or accidental modifications.
+
+## SSH Authentication
+I already had SSH keys set up. To verify, I ran:
+```
+ssh -T git@github.com
+```
+It returned a message confirming successful authentication. To manage my SSH keys, I did the following:
+
+1. Visited https://github.com/settings/keys
+2. Reviewed the list of uploaded keys
+3. Ensured my personal machine’s key was added and labeled clearly
+4. Removed any outdated or unknown keys
+This helped me ensure that only my authorized devices can securely access the repository using SSH.
+
+### Outcome
+SSH key authentication provides encrypted communication with GitHub and eliminates the risks of password-based access.
+
+## Enforced Branch Protection
+I enabled branch protection rules by:
+
+1. Going to the repository Settings > Branches
+2. Clicking Add rule
+3. Targeting the main branch
+4. Enabling the following:
+a. Require pull request reviews before merging
+b. Require status checks to pass before merging
+c. Require signed commits
+d. Restrict who can push to matching branches
+This setup prevented unauthorized changes and enforced a clean, verified history on the main codebase.
+
+## Signed Commits for Critical Changes
+To ensure commit authenticity, I configured Git to sign all my commits using GPG.
+
+Steps I followed:
+
+1. Verified my GPG key using:
+```
+gpg --list-secret-keys --keyid-format=long
+```
+2. Copied my key ID and added it to GitHub via https://github.com/settings/keys
+3. Set Git to sign all commits by default:
+```
+git config --global user.signingkey YOUR_KEY_ID
+git config --global commit.gpgsign true
+```
+4. Tested with:
+```
+git commit -S -m "My signed commit"
+```
+I confirmed on GitHub that my commits were verified, proving their authenticity.
+## Change Auditing
+Since I enabled branch protection and signed commits, all changes are now traceable. GitHub provides commit history and comparisons, and signed commits help ensure the identity of contributors.
+
+## Summary
+By taking these steps:
+
+1. I secured access through collaborator permissions.
+2. I verified and managed my SSH keys.
+3. I enforced structured development using branch protection rules.
+4. I ensured commit authenticity using GPG-signed commits.
+5. I enabled traceable auditing with verified commit history.
+These practices form a strong foundation for securing any Git-based workflow, especially in collaborative or distributed environments.
